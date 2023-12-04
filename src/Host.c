@@ -57,17 +57,21 @@ MachO *fat_find_preferred_slice(FAT *fat)
         // running on non-arm platform (prob x86 macos), default to arm64 because cringe
 
         // check for arm64e first
+        printf("Checking for arm64e slice.\n");
         preferredMacho = fat_find_slice(fat, cputype, (CPU_SUBTYPE_ARM64E | CPU_SUBTYPE_ARM64E_ABI_V2));
         if (!preferredMacho) {
             // If that's not found, try to find an old ABI arm64e slice
+            printf("Found no arm64e slice, trying oldABI arm64e slice.\n");
             preferredMacho = fat_find_slice(fat, cputype, CPU_SUBTYPE_ARM64E);
         }
-        // then check for arm64v8
         if (!preferredMacho) {
+            // then check for an arm64v8 slice (iOS 15+)
+            printf("Checking for arm64v8 slice.\n");
             preferredMacho = fat_find_slice(fat, CPU_TYPE_ARM64, CPU_SUBTYPE_ARM64_V8);
         }
         if (!preferredMacho) {
             // if all else fails, check for regular arm64
+             printf("Checking for arm64 slice.\n");
             preferredMacho = fat_find_slice(fat, CPU_TYPE_ARM64, CPU_SUBTYPE_ARM64_ALL);
         }
     }
