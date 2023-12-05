@@ -14,7 +14,8 @@ CFLAGS += -arch arm64 -isysroot $(shell xcrun --sdk iphoneos --show-sdk-path) -m
 else
 BUILD_DIR := build
 OUTPUT_DIR := output
-CFLAGS += $(shell pkg-config --libs libcrypto)
+# CFLAGS += $(shell pkg-config --libs libcrypto)
+CFLAGS += -L/usr/local/Cellar/openssl@3/3.2.0/lib -lssl -lcrypto -mmacosx-version-min=14.0 # manual fix?
 endif
 
 SRC_DIR := src

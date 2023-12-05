@@ -6,8 +6,10 @@
 #include "BufferedStream.h"
 #include "MemoryStream.h"
 #include "Util.h"
+#include "CSBlob_Enums.h"
 #include <mach-o/loader.h>
 #include <stddef.h>
+
 
 char *cs_blob_magic_to_string(int magic)
 {

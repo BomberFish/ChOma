@@ -17,6 +17,7 @@
 #include "DecryptedSignature.h"
 #include "PrivateKey.h"
 #include <copyfile.h>
+#include <choma/CSBlob_Enums.h>
 
 char *extract_preferred_slice(const char *fatPath)
 {
